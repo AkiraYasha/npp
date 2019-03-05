@@ -1,0 +1,25 @@
+#!/usr/bin/env node --harmony --no-warnings --experimental-vm-modules
+'use strict'
+
+// tslint:disable:no-var-requires
+
+// Load reflect-metadata polyfill
+require('reflect-metadata')
+
+// Load module-alias
+require('module-alias/register')
+
+// Load source-map-support
+require('source-map-support').install()
+
+// Set process title
+process.title = 'npp'
+
+// Load app and execute main method
+require('@npp/Application')
+  .main(process.argv)
+  .catch(err => {
+    console.log('Unhandled Exception')
+    console.log(err)
+    process.exit(2)
+  })

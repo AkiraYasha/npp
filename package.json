@@ -1,0 +1,40 @@
+{
+  "name": "npp",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "bin": {
+    "npp": "./bin/run"
+  },
+  "files": [
+    "yarn.lock",
+    "package.json",
+    "/bin",
+    "/lib"
+  ],
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "inversify": "^5.0.1",
+    "module-alias": "^2.1.0",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.10",
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^10.12.24",
+    "prettier": "^1.16.4",
+    "tslint": "^5.12.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "typescript": "^3.3.3"
+  },
+  "_moduleAliases": {
+    "@npp": "lib"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "engines": {
+    "node": ">=11"
+  }
+}
