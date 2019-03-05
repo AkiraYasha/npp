@@ -1,4 +1,6 @@
 import { AppModule } from '@npp/AppModule'
+import { AppTypes } from '@npp/AppTypes'
+import { Config } from '@npp/Config'
 import { DiscordClient } from '@npp/discord/DiscordClient'
 import { DiscordModule } from '@npp/discord/DiscordModule'
 import { DiscordTypes } from '@npp/discord/DiscordTypes'
@@ -17,14 +19,11 @@ export class Application {
   }
 
   public async run(argv: string[]) {
+    const config = this.kernel.get<Config>(AppTypes.CONFIG)
+    config.validate()
+
     const client = this.kernel.get<DiscordClient>(DiscordTypes.CLIENT)
-
-    const token = process.env.NPP_DISCORD_TOKEN
-    if (!token) {
-      throw new Error('Please provide a valid discord token via the environment variable: NPP_DISCORD_TOKEN')
-    }
-
-    client.start(token)
+    client.start()
   }
 }
 

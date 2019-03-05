@@ -1,11 +1,14 @@
+import { inject, injectable } from 'inversify'
+
+import { AppTypes } from '@npp/AppTypes'
+import { Config } from '@npp/Config'
 import Discord from 'discord.js'
-import { injectable } from 'inversify'
 
 @injectable()
 export class DiscordClient {
   private client: Discord.Client
 
-  constructor() {
+  constructor(@inject(AppTypes.CONFIG) private readonly config: Config) {
     this.client = new Discord.Client()
 
     this.client.on('ready', () => {
@@ -19,7 +22,7 @@ export class DiscordClient {
     })
   }
 
-  public start(token: string) {
-    this.client.login(token)
+  public start() {
+    this.client.login(this.config.discordToken)
   }
 }
